@@ -1,2 +1,30 @@
-<h1>UserProfiles#new</h1>
-<p>Find me in app/views/user_profiles/new.html.erb</p>
+<h1>Créer votre profil</h1>
+<%= simple_form_for(@user_profile) do |f| %>
+  <% if @user_profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user_profile.errors.count, "erreur") %> empêchent la sauvegarde :</h2>
+      <ul>
+        <% @user_profile.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+    <%= f.label :goal, "Objectif" %>
+    <%= f.text_field :goal %>
+  </div>
+  <div>
+    <%= f.label :starting_lvl, "Niveau de départ" %>
+    <%= f.text_field :starting_lvl %>
+  </div>
+  <div>
+    <%= f.label :equipment, "Équipement" %>
+    <%= f.text_field :equipment %>
+  </div>
+  <div>
+    <%= f.label :sessions_per_week, "Séances par semaine" %>
+    <%= f.number_field :sessions_per_week %>
+  </div>
+  <%= f.submit "Créer mon profil" %>
+<% end %>
