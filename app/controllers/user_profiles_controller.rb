@@ -1,6 +1,5 @@
 class UserProfilesController < ApplicationController
-
-  before_action :set_user_profile, only: [:edit, :update, :show]
+  before_action :set_user_profile, only: %i[edit update show]
 
   def new
     @user_profile = UserProfile.new
@@ -16,7 +15,7 @@ class UserProfilesController < ApplicationController
     if @user_profile.save
       redirect_to @user_profile, notice: "Profil utilisateur créé avec succès. Bienvenue sur InShap_Plan !"
     else
-       render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
