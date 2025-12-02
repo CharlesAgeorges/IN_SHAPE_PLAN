@@ -12,7 +12,7 @@ class MessagesController < ApplicationController
 
     if @message.save
       ruby_llm_chat = RubyLLM.chat
-      response = ruby_llm_chat.with_instructions(SYSTEM_PROMPT).ask(@message.content)
+      response = ruby_llm_chat.with_instructions(instructions).ask(@message.content)
       Message.create(role: "assistant", content: response.content, chat: @chat)
 
       redirect_to chat_path(@chat)
@@ -25,6 +25,14 @@ class MessagesController < ApplicationController
 
   def message_params
   params.require(:message).permit(:content)
+  end
+
+  def instructions
+    [SYSTEM_PROMPT, challenge_context].compact.join("\n\n")
+  end
+
+  def challenge_context
+    "Here is the context of the challenge: #{@challenge.content}."
   end
 
 end
