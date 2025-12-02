@@ -13,11 +13,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
 
-  resources :pages, only: [:profile]
+  resources :userprofiles, only: [:new, :create, :show, :edit, :update] do
+    resources :chats, only: [:index, :create]
+  end
 
-  resources :userprofiles, only: [:new, :create, :show, :edit, :update]
-
-  resources :chats, only: [:index, :create, :show] do
+  resources :chats, only: [:show] do
     resources :messages, only: [:create]
   end
 
