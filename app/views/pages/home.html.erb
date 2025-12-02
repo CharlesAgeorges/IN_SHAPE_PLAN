@@ -8,7 +8,12 @@
     <p>Crée ton plan d'entraînement personnalisé.</p>
 
     <div class="home-banner_actions">
+      <% if user_signed_in? %>
+      <%= link_to "Se connecter", new_user_session_path, class: "home-banner_btn home-banner_btn--primary",
+      onclick: "alert('Vous êtes déjà connecté.'); return false;" %>
+      <% else %>
       <%= link_to "Se connecter", new_user_session_path, class: "home-banner_btn home-banner_btn--primary" %>
+      <% end %>
       <%= link_to "Créer mon user profile", user_profiles_new_path, class: "home-banner_btn home-banner_btn--secondary" %>
     </div>
   </div>
