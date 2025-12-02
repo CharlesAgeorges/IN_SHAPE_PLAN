@@ -1,7 +1,7 @@
 class ChatsController < ApplicationController
   # before_action :authenticate_user!
   before_action :set_chat, only: [:show]
-  before_action :profile_exist
+  # before_action :profile_exist
 
   def index
     @chats = current_user.chats.order(created_at: :desc)
@@ -37,11 +37,11 @@ class ChatsController < ApplicationController
   end
 
   # Assure qu'un user ne crée pas de chat sans profil fitness
-  def profile_exist
-    return if current_user.user_profile.present?
+  # def profile_exist
+  #   return if current_user.user_profile.present?
 
-    redirect_to new_user_profile_path, alert: "Please create your fitness profile first."
-  end
+  #   redirect_to new_user_profile_path, alert: "Please create your fitness profile first."
+  # end
 
   def chat_params
     params.require(:chat).permit(:title)
