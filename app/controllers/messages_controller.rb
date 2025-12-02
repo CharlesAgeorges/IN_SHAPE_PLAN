@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
 
-  SYSTEM_PROMPT = "You a professional fitness coach with years of experience\n\nI am a coachee of yours, wanting to get in shaoe\n\ngive me a training plan based on the data i gave you about myself and my goals\n\n"
+  SYSTEM_PROMPT = "You're a professional fitness coach with years of experience\n\nI am a coachee of yours, wanting to get in shape\n\ngive me a training plan based on the data i gave you about myself and my goals\n\nau format markup"
 
   def create
     @chat = current_user.chats.find(params[:chat_id])
