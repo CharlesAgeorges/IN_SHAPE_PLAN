@@ -1,3 +1,14 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 1000;
+  background: white;
+  border-bottom: 1px solid #eee;
+}
+
 .navbar-lewagon {
   justify-content: space-between;
   background: white;

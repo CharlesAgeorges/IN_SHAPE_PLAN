@@ -1,30 +1,42 @@
-<h1>Créer votre profil</h1>
-<%= simple_form_for(@user_profile) do |f| %>
-  <% if @user_profile.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user_profile.errors.count, "erreur") %> empêchent la sauvegarde :</h2>
-      <ul>
-        <% @user_profile.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div>
-    <%= f.label :goal, "Objectif" %>
-    <%= f.text_field :goal %>
+<div class="user_profile_banner">
+  <%= image_tag "Banner_user_profile.jpg", class: "user_profile_banner_img", alt: "Banner" %>
+
+  <div class="user_profile_banner_overlay"></div>
+
+  <div class="user_profile_banner_content">
+    <h1>Créer ton profile !</h1>
+    <p>Ton coach va créer ton plan d'entraînement</p>
   </div>
-  <div>
-    <%= f.label :starting_lvl, "Niveau de départ" %>
-    <%= f.text_field :starting_lvl %>
+</div>
+
+<div class="user-profile">
+  <div class="user-profile_card">
+
+    <%= simple_form_for @user_profile do |f| %>
+
+      <div class="user-profile_group">
+        <%= f.label :goal, "Objectif", class: "user-profile_label" %>
+        <%= f.text_field :goal, class: "user-profile_input", placeholder: "Perte de poids, prise de masse, remise en forme..." %>
+      </div>
+
+      <div class="user-profile_group">
+        <%= f.label :starting_lvl, "Niveau de départ", class: "user-profile_label" %>
+        <%= f.input :starting_lvl, label: false, collection: ["Débutant", "Intermédiaire", "Avancé"], prompt: "Sélectionnez votre niveau",input_html: { class: "user-profile_select" } %>
+      </div>
+
+      <div class="user-profile_group">
+        <%= f.label :equipment, "Équipement", class: "user-profile_label" %>
+        <%= f.input :equipment,label: false, collection: ["Haltères", "Haltères + banc", "Haltères + élastique"], prompt: "Sélectionnez votre matériel", input_html: { class: "user-profile_select" } %>
+      </div>
+
+      <div class="user-profile_group">
+        <%= f.label :sessions_per_week, "Séances par semaine", class: "user-profile_label" %>
+        <%= f.number_field :sessions_per_week, class: "user-profile_input", min: 1, max: 14 %>
+      </div>
+
+      <div class="user-profile_actions">
+        <%= f.submit "Let's chat !", class: "user-profile_submit" %>
+      </div>
+    <% end %>
   </div>
-  <div>
-    <%= f.label :equipment, "Équipement" %>
-    <%= f.text_field :equipment %>
-  </div>
-  <div>
-    <%= f.label :sessions_per_week, "Séances par semaine" %>
-    <%= f.number_field :sessions_per_week %>
-  </div>
-  <%= f.submit "Créer mon profil" %>
-<% end %>
+</div>
