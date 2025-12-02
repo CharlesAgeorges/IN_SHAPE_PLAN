@@ -1,2 +1,15 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="home-banner">
+  <%= image_tag "Banner_home.jpg", class: "home-banner_img", alt: "Banner" %>
+
+  <div class="home-banner_overlay"></div>
+
+  <div class="home-banner_content">
+    <h1>In Shape Plan</h1>
+    <p>Crée ton plan d'entraînement personnalisé.</p>
+
+    <div class="home-banner_actions">
+      <%= link_to "Se connecter", new_user_session_path, class: "home-banner_btn home-banner_btn--primary" %>
+      <%= link_to "Créer mon user profile", new_user_registration_path, class: "home-banner_btn home-banner_btn--secondary" %>
+    </div>
+  </div>
+</div>
