@@ -1,8 +1,18 @@
 <div>
   <div><h1>Mes Chats</h1></div>
-<div><ul>
-  <% @chats.each do |chat| %>
-    <li><%= link_to chat.title, chat_path(chat) %></li>
-  <% end %>
-</ul></div>
+  <div>
+    <ul>
+      <% @chats.each do |chat| %>
+        <li>
+          <%= link_to chat.title, chat_path(chat) %>
+
+          <!-- lien de suppression du chat -->
+          <%= link_to chat_path(chat),
+            data: { turbo_method: :delete, turbo_confirm: "Supprimer ce chat ?" },
+            class: "delete-icon" do %>
+            <i class="fa-solid fa-trash"></i>
+          <% end %>
+      <% end %>
+    </ul>
+  </div>
 </div>

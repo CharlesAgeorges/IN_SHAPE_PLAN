@@ -1,6 +1,6 @@
 class ChatsController < ApplicationController
   # before_action :authenticate_user!
-  before_action :set_chat, only: [:show]
+  before_action :set_chat, only: %i[show destroy]
   # before_action :profile_exist
 
   def index
@@ -28,6 +28,11 @@ class ChatsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @chat.destroy
+    redirect_to chats_path, notice: "Chat supprimé."
   end
 
   private

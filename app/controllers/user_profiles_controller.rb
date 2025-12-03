@@ -1,5 +1,5 @@
 class UserProfilesController < ApplicationController
-  before_action :set_user_profile, only: %i[edit update show]
+  before_action :set_user_profile, only: %i[edit update show destroy]
 
   def new
     @user_profile = UserProfile.new
@@ -25,10 +25,15 @@ class UserProfilesController < ApplicationController
 
   def update
     if @user_profile.update(user_profile_params)
-      redirect_to chat_path(@user_profile.chats.first.id), notice: "Profil utilisateur mis à jour avec succès."
+      redirect_to chat_path(@user_profile.chat), notice: "Profil utilisateur mis à jour avec succès."
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @user_profile.destroy
+    redirect_to chat_path(@user_profile.chat), notice: "Entraînement supprimé."
   end
 
   def show
