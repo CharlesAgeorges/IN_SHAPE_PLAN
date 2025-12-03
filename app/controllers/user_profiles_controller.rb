@@ -25,7 +25,7 @@ class UserProfilesController < ApplicationController
 
   def update
     if @user_profile.update(user_profile_params)
-      redirect_to chat_path(@chat), notice: "Profil utilisateur mis à jour avec succès."
+      redirect_to chat_path(@user_profile.chats.first.id), notice: "Profil utilisateur mis à jour avec succès."
     else
       render :edit, status: :unprocessable_entity
     end
