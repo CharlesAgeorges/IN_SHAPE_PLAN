@@ -1,19 +1,22 @@
-<%= link_to "← Retour aux chats", chats_path, class: "back-link" %>
+<div class="container">
+  <%= link_to "← Retour aux chats", chats_path, class: "back-link" %>
 
-<h1 id="chat_title"><%= @chat.title %></h1>
+  <h1 id="chat_title"><%= @chat.title %></h1>
 
-<div id="messages_container">
-  <% @chat.messages.each do |message| %>
-    <p>
-      <strong><%= message.role.capitalize %>:</strong>
-      <%= message.content %>
-    </p>
-  <% end %>
-</div>
+  <div id="messages_container">
+    <% @chat.messages.each do |message| %>
+      <p>
+        <strong><%= message.role.capitalize %>:</strong>
+        <%= raw(render_markdown(message.content)) %>
+      </p>
+    <% end %>
+  </div>
 
-<div id="new_message_container">
-  <%= simple_form_for [@chat, @message] do |f| %>
-    <%= f.input :content, label: "Ask a question", required: true, placeholder: "How should I get started?" %>
-    <%= f.button :submit, 'Ask LLM', class: 'btn btn-primary' %>
-  <% end %>
+  <div id="new_message_container">
+    <%= simple_form_for [@chat, @message] do |f| %>
+      <%= f.input :content, label: "Ask a question", required: true, placeholder: "How should I get started?" %>
+      <%= f.button :submit, 'Ask LLM', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+
 </div>
