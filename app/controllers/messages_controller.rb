@@ -1,8 +1,6 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
 
-  SYSTEM_PROMPT = "You're a professional fitness coach with years of experience\n\nI am a coachee of yours, wanting to get in shape\n\ngive me a training plan based on the data i gave you about myself and my goals\n\nau format markup"
-
   def create
     @chat = current_user.chats.find(params[:chat_id])
     @message = @chat.messages.new(message_params)
@@ -31,6 +29,6 @@ class MessagesController < ApplicationController
   end
 
   def instructions
-    SYSTEM_PROMPT
+    Chat::SYSTEM_PROMPT
   end
 end

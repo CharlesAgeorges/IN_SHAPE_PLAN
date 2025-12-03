@@ -6,7 +6,7 @@
   <% @chat.messages.each do |message| %>
     <p>
       <strong><%= message.role.capitalize %>:</strong>
-      <%= raw(render_markdown(message.content)) %>
+      <%= message.content %>
     </p>
   <% end %>
 </div>
