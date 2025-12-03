@@ -9,7 +9,7 @@ class ChatsController < ApplicationController
 
   def show
     # redirect_to chats_path, alert: "Not authorized" and return unless @chat.user == current_user
-
+    @chat = Chat.find(params[:id])
     @message = Message.new
     @messages = @chat.messages.order(:created_at)
   end
