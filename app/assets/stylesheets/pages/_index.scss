@@ -6,8 +6,8 @@
   justify-content: center;
   text-align: center;
   overflow: hidden;
-  margin-bottom: 30px;
   border-radius: 0;
+  margin-bottom: 40px;
 }
 
 .chat_index_banner_img {
@@ -44,17 +44,17 @@
 }
 
 
-
 .chats-page {
   max-width: 1200px;
-  margin: 40px auto;
-  padding: 0 16px;
+  margin: 0 auto 40px;
+  padding: 0 32px;
 }
 
 .chats-grid {
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(3, 1fr);
+  margin-left: 40px;
 }
 
 .chat-card-link {
@@ -67,12 +67,12 @@
   text-decoration: none;
   color: white;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-     &:hover {
-      transform: scale(1.01);
-      transition: 0.2s ease;
-    }
-}
+  transition: 0.2s ease;
 
+  &:hover {
+    transform: scale(1.01);
+  }
+}
 
 .chat-card-title {
   position: absolute;
