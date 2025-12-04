@@ -1,13 +1,14 @@
 <div class="user_profile_banner">
-  <%= image_tag "Banner_chat_show.jpg", alt: "Banner" %>
+  <%= image_tag "Banner_user_profile.jpg", class: "user_profile_banner_img", alt: "Banner" %>
 
   <div class="user_profile_banner_overlay"></div>
 
   <div class="user_profile_banner_content">
-    <h1>Titre entrainement</h1>
-    <p>Subtitle</p>
+    <h1>Voici ton entrainement</h1>
+    <p>subtitle au besoin</p>
   </div>
 </div>
+
 <div class="container">
   <%= link_to "← Retour aux chats", chats_path, class: "back-link" %>
 
