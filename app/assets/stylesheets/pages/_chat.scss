@@ -24,7 +24,7 @@
 .return-training-btn {
 
   position: sticky;
-  top: var(--navbar-height);
+  top: calc(var(--navbar-height) + 16px);
   left: 0;
   right: 0;
   z-index: 1001;
