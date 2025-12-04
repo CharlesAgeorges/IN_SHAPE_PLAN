@@ -1,8 +1,6 @@
 <div class="user_profile_banner">
   <%= image_tag "Banner_chat_show.jpg", class: "user_profile_banner_img", alt: "Banner" %>
-
   <div class="user_profile_banner_overlay"></div>
-
   <div class="user_profile_banner_content">
     <h1>Voici ton entrainement</h1>
     <p>subtitle au besoin</p>
@@ -14,10 +12,7 @@
 
   <div id="messages_container">
     <% @chat.messages.each do |message| %>
-      <p>
-        <strong><%= message.role.capitalize %>:</strong>
-        <%= raw(render_markdown(message.content)) %>
-      </p>
+      <p><strong><%= message.role.capitalize %>:</strong><%= raw(render_markdown(message.content)) %></p>
     <% end %>
   </div>
 

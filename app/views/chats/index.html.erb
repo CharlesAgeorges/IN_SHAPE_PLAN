@@ -1,31 +1,32 @@
 <div class="chat_index_banner">
   <%= image_tag "chat_index_banner.jpg", class: "chat_index_banner_img", alt: "Banner" %>
-
   <div class="chat_index_banner_overlay"></div>
-
   <div class="chat_index_banner_content">
     <h1>Mes entraînements !</h1>
   </div>
 </div>
-  <% images = %w[random_img/photo_1.jpg random_img/photo_2.jpg random_img/photo_3.jpg random_img/photo_4.jpg random_img/photo_5.jpg] %>
 
-  <div class="chats-grid">
-    <% @chats.each do |chat| %>
-      <% random_image = images.sample %>
+<div class="text-left my-4">
+  <%= link_to "Créer un nouveau training plan", new_user_profile_path, class: "btn btn-success btn-lg create-training-btn" %>
+</div>
 
-      <div class="chat-card">
-        <%= link_to chat_path(chat), class: "chat-card-link", style: "background-image: url(#{asset_path(random_image)});" do %>
+<% images = %w[random_img/photo_1.jpg random_img/photo_2.jpg random_img/photo_3.jpg random_img/photo_4.jpg random_img/photo_5.jpg] %>
+<div class="chats-grid">
+  <% @chats.each do |chat| %>
+    <% random_image = images.sample %>
 
-          <div class="chat-card-title">
-            <%= chat.user_profile.training_title %>
-          </div>
+    <div class="chat-card">
+      <%= link_to chat_path(chat), class: "chat-card-link", style: "background-image: url(#{asset_path(random_image)});" do %>
 
-        <% end %>
+        <div class="chat-card-title">
+          <%= chat.user_profile.training_title %>
+        </div>
 
-        <%= link_to chat_path(chat), data: { turbo_method: :delete, turbo_confirm: "Supprimer ce chat ?" }, class: "delete-link" do %>
-          Supprimer
-        <% end %>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+
+      <%= link_to chat_path(chat), data: { turbo_method: :delete, turbo_confirm: "Supprimer ce chat ?" }, class: "delete-link" do %>
+        Supprimer
+      <% end %>
+    </div>
+  <% end %>
 </div>
