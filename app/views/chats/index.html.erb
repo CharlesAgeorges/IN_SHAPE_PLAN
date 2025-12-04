@@ -1,18 +1,31 @@
-<div>
-  <div><h1>Mes Chats</h1></div>
-  <div>
-    <ul>
-      <% @chats.each do |chat| %>
-        <li>
-          <%= link_to chat.title, chat_path(chat) %>
+<div class="chat_index_banner">
+  <%= image_tag "chat_index_banner.jpg", class: "chat_index_banner_img", alt: "Banner" %>
 
-          <!-- lien de suppression du chat -->
-          <%= link_to chat_path(chat),
-            data: { turbo_method: :delete, turbo_confirm: "Supprimer ce chat ?" },
-            class: "delete-icon" do %>
-            <i class="fa-solid fa-trash"></i>
-          <% end %>
-      <% end %>
-    </ul>
+  <div class="chat_index_banner_overlay"></div>
+
+  <div class="chat_index_banner_content">
+    <h1>Mes entraînements !</h1>
+  </div>
+</div>
+  <% images = %w[random_img/photo_1.jpg random_img/photo_2.jpg random_img/photo_3.jpg random_img/photo_4.jpg random_img/photo_5.jpg] %>
+
+  <div class="chats-grid">
+    <% @chats.each do |chat| %>
+      <% random_image = images.sample %>
+
+      <div class="chat-card">
+        <%= link_to chat_path(chat), class: "chat-card-link", style: "background-image: url(#{asset_path(random_image)});" do %>
+
+          <div class="chat-card-title">
+            <%= chat.user_profile.training_title %>
+          </div>
+
+        <% end %>
+
+        <%= link_to chat_path(chat), data: { turbo_method: :delete, turbo_confirm: "Supprimer ce chat ?" }, class: "delete-link" do %>
+          Supprimer
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>

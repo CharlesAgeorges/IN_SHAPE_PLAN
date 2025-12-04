@@ -1,2 +1,96 @@
-// Import page-specific CSS files here.
-@import "home";
+.chat_index_banner {
+  position: relative;
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  margin-bottom: 30px;
+  border-radius: 0;
+}
+
+.chat_index_banner_img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(65%);
+  z-index: 0;
+  border-radius: 0;
+}
+
+.chat_index_banner_overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+  border-radius: 0;
+}
+
+.chat_index_banner_content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  padding: 0 1rem;
+}
+
+.chat_index_banner_content h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+
+
+.chats-page {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+.chats-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.chat-card-link {
+  display: block;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  position: relative;
+  text-decoration: none;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+     &:hover {
+      transform: scale(1.01);
+      transition: 0.2s ease;
+    }
+}
+
+
+.chat-card-title {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  font-size: 20px;
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+}
+
+.delete-link {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 14px;
+  color: #999;
+  text-decoration: none;
+
+  &:hover {
+    color: #d9534f;
+  }
+}
