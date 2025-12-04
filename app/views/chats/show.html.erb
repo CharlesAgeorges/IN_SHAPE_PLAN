@@ -10,8 +10,7 @@
 </div>
 
 <div class="container">
-  <%= link_to "← Retour aux chats", chats_path, class: "back-link" %>
-
+  <%= link_to "← Retour aux entrainements", chats_path, class: "btn btn-success btn-lg return-training-btn" %>
   <div id="messages_container">
     <div id="messages">
       <%= render "messages/messages", messages: @chat.messages %>
