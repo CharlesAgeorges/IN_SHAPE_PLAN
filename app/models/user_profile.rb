@@ -10,6 +10,6 @@ class UserProfile < ApplicationRecord
     sessions = sessions_per_week.presence || "?"
     objectif = goal.presence || "Non défini"
 
-    "#{level} · #{sessions} séances / semaine · Objectif : #{objectif}"
+    "#{level} · #{sessions} séances · Objectif : #{objectif}"
   end
 end

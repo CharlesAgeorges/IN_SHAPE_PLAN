@@ -16,4 +16,14 @@
 @import "pages/user_profile";
 @import "pages/chat";
 @import "components/btn_green";
-@import "components/logo"
+@import "components/logo";
+
+.full-height-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  flex: 1;
+}
