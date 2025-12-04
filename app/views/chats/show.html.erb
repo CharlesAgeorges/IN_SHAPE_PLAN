@@ -1,7 +1,15 @@
+<div class="user_profile_banner">
+  <%= image_tag "Banner_chat_show.jpg", alt: "Banner" %>
+
+  <div class="user_profile_banner_overlay"></div>
+
+  <div class="user_profile_banner_content">
+    <h1>Titre entrainement</h1>
+    <p>Subtitle</p>
+  </div>
+</div>
 <div class="container">
   <%= link_to "← Retour aux chats", chats_path, class: "back-link" %>
-
-  <h1 id="chat_title"><%= @chat.title %></h1>
 
   <div id="messages_container">
     <% @chat.messages.each do |message| %>
