@@ -8,13 +8,19 @@ class MessagesController < ApplicationController
     # @message.chat = @chat
 
     if @message.save
-      ruby_llm_chat = RubyLLM.chat
-      response = ruby_llm_chat.with_instructions(instructions).ask(@message.content)
+      @ruby_llm_chat = RubyLLM.chat
+      build_conversation_history
+      response = @ruby_llm_chat.with_instructions(instructions).ask(@message.content)
       @chat.messages.create(role: "assistant", content: response.content)
-      # @chat.messages.create
-      redirect_to chat_path(@chat)
+      respond_to do |f|
+        f.turbo_stream
+        f.html { redirect_to chat_path(@chat) }
+      end
     else
-      render "chats/show", status: :unprocessable_entity
+       respond_to do |f|
+        f.turbo_stream { render turbo_stream: turbo_stream.replace("new_message", partial: "messages/form", locals: { chat: @chat, message: @message }) }
+        f.html { render "chats/show", status: :unprocessable_entity }
+       end
     end
   end
 
@@ -30,5 +36,11 @@ class MessagesController < ApplicationController
 
   def instructions
     Chat::SYSTEM_PROMPT
+  end
+
+  def build_conversation_history
+    @chat.messages.each do |message|
+      @ruby_llm_chat.add_message(message)
+    end
   end
 end
