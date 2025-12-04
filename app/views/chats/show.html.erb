@@ -13,18 +13,12 @@
   <%= link_to "← Retour aux chats", chats_path, class: "back-link" %>
 
   <div id="messages_container">
-    <% @chat.messages.each do |message| %>
-      <p>
-        <strong><%= message.role.capitalize %>:</strong>
-        <%= raw(render_markdown(message.content)) %>
-      </p>
-    <% end %>
+    <div id="messages">
+      <%= render "messages/messages", messages: @chat.messages %>
+    </div>
   </div>
 
   <div id="new_message_container">
-    <%= simple_form_for [@chat, @message] do |f| %>
-      <%= f.input :content, label: "Ask a question", required: true, placeholder: "How should I get started?" %>
-      <%= f.button :submit, 'Ask LLM', class: 'btn btn-primary' %>
-    <% end %>
+    <%= render "messages/form", chat: @chat, message: @message %>
   </div>
 </div>
