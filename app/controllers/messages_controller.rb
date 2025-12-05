@@ -58,7 +58,8 @@ class MessagesController < ApplicationController
   end
 
   def broadcast_replace(message)
-    Turbo::StreamsChannel.broadcast_replace_to(@chat, target: "message", partial: "messages/message", locals: { message: message })
-    Turbo::StreamsChannel.broadcast_remove_to "chat", target: "new_message"
+    Turbo::StreamsChannel.broadcast_replace_to(@chat, target: helpers.dom_id(message), partial: "messages/message", locals: { message: message })
+    Turbo::StreamsChannel.broadcast_remove_to(@chat, target: "new_message")
+    Turbo::StreamsChannel.broadcast_replace_to(@chat, target: "new_message_container", partial: "messages/form", locals: { message: Message.new, chat: @chat })
   end
 end
