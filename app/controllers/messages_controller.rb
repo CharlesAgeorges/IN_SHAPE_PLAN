@@ -8,17 +8,28 @@ class MessagesController < ApplicationController
     # @message.chat = @chat
 
     if @message.save
+      @assistant_message = @chat.messages.create(role: "assistant", content: "")
       @ruby_llm_chat = RubyLLM.chat
       build_conversation_history
-      response = @ruby_llm_chat.with_instructions(instructions).ask(@message.content)
-      @chat.messages.create(role: "assistant", content: response.content)
+      @ruby_llm_chat.with_instructions(instructions)
+      @response = @ruby_llm_chat.ask(@message.content) do |chunk|
+        next if chunk.content.blank? # skip empty chunks
+
+        @assistant_message.content += chunk.content
+        broadcast_replace(@assistant_message)
+      end
+      # @chat.messages.create(role: "assistant", content: response.content)
+
+      @assistant_message.update(content: @response.content)
+      broadcast_replace(@assistant_message)
+
       respond_to do |f|
         f.turbo_stream
         f.html { redirect_to chat_path(@chat) }
       end
     else
        respond_to do |f|
-        f.turbo_stream { render turbo_stream: turbo_stream.replace("new_message", partial: "messages/form", locals: { chat: @chat, message: @message }) }
+        f.turbo_stream { render turbo_stream: turbo_stream.replace("new_message_container", partial: "messages/form", locals: { chat: @chat, message: @message }) }
         f.html { render "chats/show", status: :unprocessable_entity }
        end
     end
@@ -40,7 +51,14 @@ class MessagesController < ApplicationController
 
   def build_conversation_history
     @chat.messages.each do |message|
+      next if message.content.blank?
+
       @ruby_llm_chat.add_message(message)
     end
+  end
+
+  def broadcast_replace(message)
+    Turbo::StreamsChannel.broadcast_replace_to(@chat, target: "message", partial: "messages/message", locals: { message: message })
+    Turbo::StreamsChannel.broadcast_remove_to "chat", target: "new_message"
   end
 end
