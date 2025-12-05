@@ -44,6 +44,7 @@ gem "kramdown"
 gem "rouge"
 gem "kramdown-parser-gfm"
 gem "devise"
+gem "cloudinary"
 
 group :development, :test do
   gem "dotenv-rails"
