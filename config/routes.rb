@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get "user_profiles/update"
   devise_for :users
   root to: "pages#home"
+  # en dessous: pour les authentifications
+  get "home", to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
