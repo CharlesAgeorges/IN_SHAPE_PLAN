@@ -42,6 +42,10 @@
               autocomplete: "new-password" %>
       </div>
 
+      <div class="user-profile_group">
+        <%= f.input :photo, as: :file %>
+      </div>
+
       <div class="user-profile_actions">
         <%= f.submit "S'inscrire", class: "user-profile_submit" %>
       </div>
