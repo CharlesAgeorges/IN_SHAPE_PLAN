@@ -17,9 +17,9 @@ class MessagesController < ApplicationController
         f.html { redirect_to chat_path(@chat) }
       end
     else
-       respond_to do |f|
-        f.turbo_stream { render turbo_stream: turbo_stream.replace("new_message", partial: "messages/form", locals: { chat: @chat, message: @message }) }
-        f.html { render "chats/show", status: :unprocessable_entity }
+      respond_to do |f|
+         f.turbo_stream { render turbo_stream: turbo_stream.replace("new_message", partial: "messages/form", locals: { chat: @chat, message: @message }) }
+         f.html { render "chats/show", status: :unprocessable_entity }
        end
     end
   end
